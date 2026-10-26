@@ -18,6 +18,6 @@ jobs:
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: coffee_point/frontend
+          path: coffee_point/coffee_point/frontend
       - id: deployment
         uses: actions/deploy-pages@v4
