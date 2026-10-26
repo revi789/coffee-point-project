@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Кофе Point</title>
+  <meta name="robots" content="noindex">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Страница самодостаточная: стили внутри, чтобы она выглядела хорошо по любому адресу -->
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      font-family: 'Inter', Arial, sans-serif;
+      line-height: 1.6;
+      color: #fbf6ee;
+      background: linear-gradient(135deg, #1f1410 0%, #3d2a21 100%);
+    }
+
+    .code {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: clamp(5rem, 22vw, 10rem);
+      font-weight: 700;
+      line-height: 1;
+      color: #c8a45c;
+    }
+    .cup { display: inline-block; animation: wobble 3s ease-in-out infinite; }
+
+    h1 { font-family: 'Playfair Display', Georgia, serif; font-size: clamp(1.5rem, 5vw, 2.2rem); margin: 16px 0 8px; }
+    p { max-width: 420px; margin: 0 auto 28px; opacity: 0.85; }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 30px;
+      border-radius: 30px;
+      background: #c8a45c;
+      color: #1f1410;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn:hover { background: #d8b570; transform: translateY(-2px); }
+
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-6deg); }
+      50% { transform: rotate(6deg); }
+    }
+    @media (prefers-reduced-motion: reduce) { .cup { animation: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="code">4<span class="cup">☕</span>4</div>
+    <h1>Страница не найдена</h1>
+    <p>Кажется, этот кофе уже выпили: такой страницы нет. Вернёмся на главную и выберем что-нибудь вкусное?</p>
+    <a class="btn" href="/">На главную</a>
+
+    <!-- English -->
+    <h1 style="margin-top: 44px; font-size: 1.2rem; opacity: 0.7;">Page not found</h1>
+    <p style="font-size: 0.9rem; opacity: 0.6; margin-bottom: 0;">The page you are looking for does not exist. <a href="/" style="color: #c8a45c;">Back to home</a></p>
+  </main>
+</body>
+</html>

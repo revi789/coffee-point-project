@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Кофе Point — кофейня с характером</title>
+  <meta name="description" content="Кофе Point — свежий кофе, чай, выпечка и десерты в центре города.">
+  <!-- Включаем режим "JS есть" сразу, чтобы анимации появления не мигали -->
+  <script>document.documentElement.classList.add('js');</script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- ===== ШАПКА ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#home" class="logo">☕ <span data-i18n="brand.name">Кофе</span> <b>Point</b></a>
+
+      <nav class="nav" id="nav">
+        <a href="#home" data-i18n="nav.home">Главная</a>
+        <a href="#menu" data-i18n="nav.menu">Меню</a>
+        <a href="#about" data-i18n="nav.about">О нас</a>
+        <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
+      </nav>
+
+      <div class="header__right">
+        <!-- Переключатель языка -->
+        <button class="lang" id="lang-button" type="button" data-i18n-attr="aria-label:lang.aria" aria-label="Сменить язык">
+          <span data-lang="ru">RU</span><span data-lang="en">EN</span>
+        </button>
+
+        <button class="cart-button" id="cart-button" type="button" data-i18n-attr="aria-label:cart.open" aria-label="Открыть корзину">
+          🛒 <span class="cart-count" id="cart-count">0</span>
+        </button>
+
+        <a href="#menu" class="btn header__order" data-i18n="cta.order">Заказать онлайн</a>
+
+        <button class="burger" id="burger" type="button" aria-label="Открыть меню">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== HERO ===== -->
+    <section class="hero" id="home">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <p class="label" data-i18n="hero.label">Свежая обжарка каждую неделю</p>
+          <h1 data-i18n="hero.title">Идеальное утро начинается с правильного кофе</h1>
+          <p data-i18n="hero.text">Мы сами выбираем зерно, обжариваем небольшими партиями и готовим каждую чашку с вниманием к деталям. Заходите на эспрессо по пути или оставайтесь на весь день.</p>
+          <div class="hero__buttons">
+            <a href="#menu" class="btn" data-i18n="hero.menu">Смотреть меню</a>
+            <a href="#about" class="btn btn--outline" data-i18n="hero.story">Наша история</a>
+          </div>
+        </div>
+        <img class="hero__image"
+             src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=900&q=80"
+             alt="Чашка капучино на деревянном столе" data-i18n-attr="alt:hero.alt">
+      </div>
+    </section>
+
+    <!-- ===== СЛАЙДЕР "ХИТЫ НЕДЕЛИ" (без библиотек) ===== -->
+    <section class="section section--light" id="popular">
+      <div class="container">
+        <h2 class="section__title reveal" data-i18n="popular.title">Хиты недели</h2>
+        <p class="section__subtitle reveal" data-i18n="popular.subtitle">Любимые позиции наших гостей</p>
+
+        <div class="slider reveal">
+          <button class="slider__arrow" id="slider-prev" type="button" data-i18n-attr="aria-label:slider.prev" aria-label="Назад">‹</button>
+          <div class="slider__viewport" id="slider-viewport">
+            <div class="slider__track" id="slider-track"></div>
+          </div>
+          <button class="slider__arrow" id="slider-next" type="button" data-i18n-attr="aria-label:slider.next" aria-label="Вперёд">›</button>
+        </div>
+        <div class="slider__dots" id="slider-dots"></div>
+      </div>
+    </section>
+
+    <!-- ===== МЕНЮ ===== -->
+    <section class="section" id="menu">
+      <div class="container">
+        <h2 class="section__title reveal" data-i18n="menu.title">Наше меню</h2>
+        <p class="section__subtitle reveal" data-i18n="menu.subtitle">Всё готовим в день заказа — из хороших ингредиентов.</p>
+
+        <!-- Поиск -->
+        <div class="search">
+          <input class="search__input" id="search-input" type="search" autocomplete="off"
+                 data-i18n-attr="placeholder:search.placeholder;aria-label:search.label"
+                 placeholder="Найти кофе, десерт, круассан…" aria-label="Поиск по меню">
+          <button class="search__clear" id="search-clear" type="button" hidden data-i18n-attr="aria-label:search.clear" aria-label="Очистить">✕</button>
+        </div>
+
+        <!-- Вкладки -->
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-category="coffee" type="button" data-i18n="cat.coffee">Кофе</button>
+          <button class="tab" data-category="tea" type="button" data-i18n="cat.tea">Чай</button>
+          <button class="tab" data-category="bakery" type="button" data-i18n="cat.bakery">Выпечка</button>
+          <button class="tab" data-category="dessert" type="button" data-i18n="cat.dessert">Десерты</button>
+        </div>
+
+        <div class="menu-grid" id="menu-grid"></div>
+      </div>
+    </section>
+
+    <!-- ===== О НАС ===== -->
+    <section class="section about" id="about">
+      <div class="container about__inner">
+        <img class="about__image reveal"
+             src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=800&q=80"
+             alt="Уютный интерьер кофейни" data-i18n-attr="alt:about.alt" loading="lazy">
+
+        <div class="reveal">
+          <h2 class="section__title section__title--left" data-i18n="about.title">Место, где время идёт медленнее</h2>
+          <p data-i18n="about.p1">«Кофе Point» начался с маленькой кофемашины и большой любви к хорошему вкусу. Мы работаем напрямую с фермами Эфиопии, Колумбии и Бразилии.</p>
+          <p data-i18n="about.p2">Зерно обжариваем небольшими партиями — поэтому в чашке всегда яркий аромат и чистый вкус. А ещё у нас мягкий свет, тёплое дерево и музыка, под которую хочется остаться подольше.</p>
+          <ul class="about__list">
+            <li data-i18n="about.f1">🌱 Прямые закупки у фермеров</li>
+            <li data-i18n="about.f2">🔥 Своя обжарка</li>
+            <li data-i18n="about.f3">🥐 Свежая выпечка каждое утро</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ФОРМА ОБРАТНОЙ СВЯЗИ (отправляется на наш API: POST /api/feedback) ===== -->
+    <section class="section section--light" id="feedback">
+      <div class="container feedback">
+        <h2 class="section__title reveal" data-i18n="feedback.title">Напишите нам</h2>
+        <p class="section__subtitle reveal" data-i18n="feedback.subtitle">Забронировать столик, задать вопрос или оставить отзыв — мы ответим на почту.</p>
+
+        <form class="form reveal" id="feedback-form" novalidate>
+          <label for="fb-name" data-i18n="feedback.name">Ваше имя</label>
+          <input id="fb-name" name="name" maxlength="80" required autocomplete="name">
+
+          <label for="fb-email" data-i18n="feedback.email">Электронная почта</label>
+          <input id="fb-email" name="email" type="email" maxlength="120" required autocomplete="email">
+
+          <label for="fb-message" data-i18n="feedback.message">Сообщение</label>
+          <textarea id="fb-message" name="message" rows="4" minlength="5" maxlength="1000" required></textarea>
+
+          <!-- Ловушка для ботов: человек это поле не видит и не заполняет -->
+          <input class="form__trap" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <p class="form__error" id="feedback-error" hidden></p>
+          <button class="btn btn--full" id="feedback-submit" type="submit" data-i18n="feedback.send">Отправить</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== КОНТАКТЫ ===== -->
+  <footer class="footer" id="contacts">
+    <div class="container footer__grid">
+      <div>
+        <h3 data-i18n="footer.contacts">Контакты</h3>
+        <p>📍 <span data-i18n="footer.address">ул. Чкалова, 12</span></p>
+        <p>📞 <a href="tel:+78001234567">+7 (800) 123-45-67</a></p>
+        <p>✉️ <a href="mailto:hello@coffeepoint.example">hello@coffeepoint.example</a></p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Telegram">TG</a>
+          <a href="#" aria-label="VK">VK</a>
+        </div>
+      </div>
+
+      <div>
+        <h3 data-i18n="footer.hours">Часы работы</h3>
+        <p><span data-i18n="footer.weekdays">Пн – Пт</span>: 07:00 – 21:00</p>
+        <p><span data-i18n="footer.weekend">Сб – Вс</span>: 08:00 – 22:00</p>
+      </div>
+
+      <div>
+        <h3 data-i18n="footer.map">Как нас найти</h3>
+        <a class="map" href="https://www.google.com/maps/search/?api=1&query=coffee" target="_blank" rel="noopener">
+          <span class="map__pin">📍</span>
+          <span class="map__label" data-i18n="footer.mapLink">Открыть на карте →</span>
+        </a>
+      </div>
+    </div>
+    <p class="footer__copy">© <span id="year">2026</span> <span data-i18n="brand.full">Кофе Point</span>. <span data-i18n="footer.rights">Все права защищены.</span></p>
+  </footer>
+
+  <!-- ===== КОРЗИНА (боковая панель) ===== -->
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart" id="cart">
+    <div class="cart__head">
+      <h2 data-i18n="cart.title">Корзина</h2>
+      <button class="cart__close" id="cart-close" type="button" data-i18n-attr="aria-label:close" aria-label="Закрыть">✕</button>
+    </div>
+    <div class="cart__items" id="cart-items"></div>
+    <div class="cart__footer">
+      <div class="cart__total">
+        <span data-i18n="cart.total">Итого</span>
+        <strong id="cart-total">0 ₽</strong>
+      </div>
+      <button class="btn btn--full" id="checkout-button" type="button" data-i18n="cart.checkout">Оформить заказ</button>
+      <button class="cart__clear" id="clear-button" type="button" data-i18n="cart.clear">Очистить корзину</button>
+    </div>
+  </aside>
+
+  <!-- ===== МОДАЛЬНОЕ ОКНО С ДЕТАЛЯМИ ТОВАРА ===== -->
+  <dialog class="modal" id="product-modal">
+    <button class="modal__close" id="modal-close" type="button" data-i18n-attr="aria-label:close" aria-label="Закрыть">✕</button>
+    <div id="modal-body"></div>
+  </dialog>
+
+  <!-- Кнопка "Наверх" -->
+  <button class="to-top" id="to-top" type="button" data-i18n-attr="aria-label:toTop" aria-label="Наверх">↑</button>
+
+  <!-- Уведомления -->
+  <div class="toast-box" id="toast-box"></div>
+
+  <script src="./js/i18n.js"></script>
+  <script src="./js/api.js"></script>
+  <script src="./js/script.js"></script>
+</body>
+</html>

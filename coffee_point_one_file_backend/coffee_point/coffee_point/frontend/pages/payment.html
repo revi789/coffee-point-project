@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Оплата заказа — Кофе Point</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/payment.css">
+</head>
+<body data-title-key="pay.title">
+
+  <header class="top">
+    <a class="logo" href="/">☕ <span data-i18n="brand.name">Кофе</span> <b>Point</b></a>
+    <div class="top__right">
+      <button class="lang" id="lang-button" type="button" data-i18n-attr="aria-label:lang.aria" aria-label="Сменить язык">
+        <span data-lang="ru">RU</span><span data-lang="en">EN</span>
+      </button>
+      <span class="badge" data-i18n="pay.badge">🔒 Демо-оплата</span>
+    </div>
+  </header>
+
+  <main class="layout">
+
+    <!-- Левая колонка: состав заказа -->
+    <section>
+      <a class="back" href="/" data-i18n="pay.back">← Вернуться в кофейню</a>
+      <h1 data-i18n="pay.title">Оплата заказа</h1>
+      <p class="note" data-i18n="pay.note">Учебный режим. Деньги не списываются. Не вводите реальные данные банковской карты.</p>
+
+      <div class="box">
+        <div class="box__head">
+          <h2 data-i18n="pay.order">Ваш заказ</h2>
+          <span id="item-count"></span>
+        </div>
+        <div id="order-items"></div>
+        <div class="total">
+          <span data-i18n="pay.toPay">К оплате</span>
+          <strong id="order-total">0 ₽</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Правая колонка: форма -->
+    <section class="box">
+      <form id="payment-form" novalidate>
+        <h2 data-i18n="pay.formTitle">Данные для оплаты</h2>
+
+        <label for="name" data-i18n="pay.name">Имя</label>
+        <input id="name" name="name" maxlength="80" required autocomplete="name"
+               data-i18n-attr="placeholder:pay.namePlaceholder" placeholder="Например, Алексей">
+
+        <label for="email" data-i18n="pay.email">Электронная почта</label>
+        <input id="email" name="email" type="email" maxlength="120" placeholder="you@example.com" required autocomplete="email">
+
+        <label for="card" data-i18n="pay.card">Номер карты</label>
+        <input id="card" name="card" inputmode="numeric" placeholder="4242 4242 4242 4242" maxlength="19" required autocomplete="off">
+
+        <div class="row">
+          <div>
+            <label for="expiry" data-i18n="pay.expiry">Срок действия</label>
+            <input id="expiry" name="expiry" inputmode="numeric" placeholder="MM/YY" maxlength="5" required autocomplete="off">
+          </div>
+          <div>
+            <label for="cvc">CVC</label>
+            <input id="cvc" name="cvc" inputmode="numeric" placeholder="123" maxlength="3" required autocomplete="off">
+          </div>
+        </div>
+
+        <p class="hint" data-i18n="pay.hint">Для демо подойдут вымышленные данные: 4242 4242 4242 4242, 12/30, 123.</p>
+        <p class="error" id="pay-error" hidden></p>
+
+        <button class="pay-button" id="pay-button" type="submit">
+          <span id="pay-button-text" data-i18n="pay.submit">Подтвердить демо-заказ</span>
+          <span id="button-total">0 ₽</span>
+        </button>
+      </form>
+
+      <!-- Показывается после "оплаты" -->
+      <div class="success" id="success" hidden>
+        <div class="success__icon">✓</div>
+        <h2 data-i18n="pay.done">Демо-заказ оформлен!</h2>
+        <p data-i18n="pay.doneText">Это учебная симуляция: оплата не производилась.</p>
+        <p class="success__number"><span data-i18n="pay.orderNumber">Номер заказа</span>: <strong id="order-number"></strong></p>
+        <a class="pay-button" href="/" data-i18n="pay.home">Вернуться на главную</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="../js/i18n.js"></script>
+  <script src="../js/api.js"></script>
+  <script src="../js/payment.js"></script>
+</body>
+</html>
